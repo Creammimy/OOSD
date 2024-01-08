@@ -1,0 +1,31 @@
+class Circle{
+    private double x,y,r;
+    public double area(){
+        return 3.14*r*r;
+    }
+    public double circum(){
+        return 2*3.14*r;
+    }
+    public Circle(double x,double y,double r){
+       this.x = x;
+       this.y = y;
+       this.r = r;
+    }
+    public void print(){
+        System.out.println(3.14*r*r);
+    }
+    
+}
+class GraphicCircle extends Circle{
+    //private Color outline,fill;
+    //public void draw(DrawWindow dw){}
+    public GraphicCircle(double x,double y,double r){
+       super(x,y,r); 
+    }
+}
+public class Inheritance {
+    public static void main(String[] args) {
+       GraphicCircle gc  = new GraphicCircle(10,10,5);
+       gc.print();
+    }
+}
