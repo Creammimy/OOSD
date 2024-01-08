@@ -1,0 +1,103 @@
+import java.util.ArrayList;
+class Product{
+    private String code,name;
+    private int price,quantity;
+    public Product(String code,String name,int price,int quantity){
+        this.code = code;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        
+    }
+    public String toString(){
+        return "รหัส "+code+" ราคา "+price+" สินค้าปกติ "+price+" บาท ";
+    }
+    public int getPrice(){
+        return price;
+    }
+    public String getCode(){
+        return code;
+    }
+    public String getName(){
+        return name;
+    }
+     public int getQuantity(){
+        return quantity ;
+    }
+    public int TotalPrice(){
+        return quantity*price;
+    }
+    public String toString2(){
+        return "จำนวน "+quantity+" รวมราคา "+TotalPrice()+" บาท";
+    }
+    
+    
+    
+}
+class DiscountProduct extends Product{
+    private int discountRate;
+    
+    DiscountProduct(String code,String name,int price,int discountRate,int quantity){
+        super(code,name,price,quantity);
+        this.discountRate = discountRate;
+        
+    }
+    public double getDiscountRate(){
+        return discountRate;
+    
+    }
+    public void  setDiscountRate(int discountRate){
+        this.discountRate = discountRate;
+    
+    }
+    public int  getDiscountPrice(){
+        return getPrice()-(getPrice()*discountRate/100);
+    
+    }
+    public int TotalPrice(){
+        return getQuantity()*getDiscountPrice();
+    }
+    public String toString(){
+        return "รหัส "+getCode()+" ราคา "+getPrice()+" ลด "+discountRate+"% "+ getDiscountPrice()+" บาท";
+    }
+    public String toString2(){
+        return "จำนวน "+getQuantity()+" รวมราคา "+TotalPrice()+" บาท";
+    }
+    
+    
+    
+}
+class BuyOneGetOneProduct extends Product{
+    BuyOneGetOneProduct(String code,String name,int price,int quantity){
+       super(code,name,price,quantity);
+    }
+    public int TotalPrice(){
+        int numberOfProduct = getQuantity()/2;
+        return getPrice()*numberOfProduct;
+    }
+    public String toString(){
+        return "รหัส "+getCode()+" ราคา "+getPrice()+" แถม 1 "+getPrice()+" บาท";
+    }
+    public String toString2(){
+        return "จำนวน "+getQuantity()+" รวมราคา "+TotalPrice()+" บาท";
+    }
+    
+}
+
+public class Inheritance {
+    public static void main(String[] args) {
+       DiscountProduct p2 = new DiscountProduct("11",null,40,20,2);
+       BuyOneGetOneProduct p3 = new BuyOneGetOneProduct("33",null,30,2);
+       Product p1 = new Product("44",null,50,3);
+       
+       Product[] products = {p2,p3,p1};
+        System.out.print("สินค้ามี ");
+        for(int i =0;i<products.length;i++){
+            System.out.println(products[i]);
+        }
+        System.out.print("เมื่อขาย ");
+        for(int i =0;i<products.length;i++){
+            System.out.println(products[i]+products[i].toString2());
+        }
+    }
+}
