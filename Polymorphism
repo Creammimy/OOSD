@@ -1,0 +1,68 @@
+//ตัวอย่างการคำนวณเกรด
+class Student {
+    protected String name;
+    protected double score;
+
+    public Student(String name, double score) {
+        this.name = name;
+        this.score = score;
+    }
+
+    public void calculateGrade() {
+        System.out.println("Calculating grade for " + name);
+    }
+}
+
+class HighSchoolStudent extends Student {
+    public HighSchoolStudent(String name, double score) {
+        super(name, score);
+    }
+
+    @Override
+    public void calculateGrade() {
+        if (score >= 80) {
+            System.out.println(name + "'s grade is A");
+        } else if (score >= 70) {
+            System.out.println(name + "'s grade is B");
+        } else {
+            System.out.println(name + "'s grade is C");
+        }
+    }
+}
+
+class CollegeStudent extends Student {
+    public CollegeStudent(String name, double score) {
+        super(name, score);
+    }
+
+    @Override
+    public void calculateGrade() {
+        if (score >= 90) {
+            System.out.println(name + "'s grade is A");
+        } else if (score >= 80) {
+            System.out.println(name + "'s grade is B");
+        } else {
+            System.out.println(name + "'s grade is C");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student highSchoolStudent = new HighSchoolStudent("John", 85);
+        Student collegeStudent = new CollegeStudent("Alice", 78);
+
+        printGrade(highSchoolStudent);
+        printGrade(collegeStudent);
+    }
+
+    public static void printGrade(Student student) {
+        student.calculateGrade();
+
+        if (student instanceof HighSchoolStudent) {
+            System.out.println("This is a high school student.");
+        } else if (student instanceof CollegeStudent) {
+            System.out.println("This is a college student.");
+        }
+    }
+}
